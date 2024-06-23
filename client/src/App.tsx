@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Logout from './pages/auth/Logout';
+import Home from './pages/home/Home';
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/login" element={<Login authenticated={authenticated} setAuthenticated={setAuthenticated} />} />
         <Route path="/register" element={<Register authenticated={authenticated} setAuthenticated={setAuthenticated} />} />
         <Route path="/logout" element={<Logout setAuthenticated={setAuthenticated} />} />
+        <Route path="/" element={<Home authenticated={authenticated} />} />
       </Routes>
     </Router>
   )

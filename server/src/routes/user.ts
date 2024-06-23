@@ -45,7 +45,12 @@ router.post('/register', async (req: Request, res: Response) => {
     return res.send();
   } catch (e) {
     console.log(e);
-    return res.status(500).json({ success: false, message: 'An unexpected error occurred.' });
+    return res
+      .status(500)
+      .json({
+        success: false,
+        message: 'An unexpected error occurred.'
+      });
   }
 });
 
@@ -54,10 +59,20 @@ router.post('/login', async (req: Request, res: Response) => {
     const { username = '', password = '' } = req.body;
     const user: IUser = await UserModel.findOne({ username });
 
-    if (!user) return res.status(403).json({ success: false, message: 'Failed to authenticate.' });
+    if (!user) return res
+      .status(403)
+      .json({
+        success: false,
+        message: 'Failed to authenticate.'
+      });
 
     const passwordIsValid = await bcrypt.compare(password, user.password);
-    if (!passwordIsValid) return res.status(403).json({ success: false, message: 'Failed to authenticate.' });
+    if (!passwordIsValid) return res
+      .status(403)
+      .json({
+        success: false,
+        message: 'Failed to authenticate.'
+      });
 
     const sessionData = {
       id: user._id,
@@ -75,7 +90,12 @@ router.post('/login', async (req: Request, res: Response) => {
     return res.send();
   } catch (e) {
     console.log(e);
-    return res.status(500).json({ success: false, message: 'An unexpected error occurred.' });
+    return res
+      .status(500)
+      .json({
+        success: false,
+        message: 'An unexpected error occurred.'
+      });
   }
 });
 
@@ -89,7 +109,12 @@ router.get('/logout', verifyToken, (req: Request, res: Response) => {
     return res.json({ success: true });
   } catch (e) {
     console.log(e);
-    return res.status(500).json({ success: false, message: 'An unexpected error occurred.' });
+    return res
+      .status(500)
+      .json({
+        success: false,
+        message: 'An unexpected error occurred.'
+      });
   }
 });
 
