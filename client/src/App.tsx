@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import ServerClient from './apis/server';
 import Navbar from './components/Navbar';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+import Logout from './pages/auth/Logout';
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -24,7 +27,9 @@ const App = () => {
     <Router>
       <Navbar authenticated={authenticated} />
       <Routes>
-
+        <Route path="/login" element={<Login authenticated={authenticated} setAuthenticated={setAuthenticated} />} />
+        <Route path="/register" element={<Register authenticated={authenticated} setAuthenticated={setAuthenticated} />} />
+        <Route path="/logout" element={<Logout setAuthenticated={setAuthenticated} />} />
       </Routes>
     </Router>
   )
